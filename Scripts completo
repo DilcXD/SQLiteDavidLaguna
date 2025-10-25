@@ -1,0 +1,86 @@
+CREATE TABLE Carrera(idCarrera INTEGER PRIMARY KEY AUTOINCREMENT,
+			Nombre varchar (30),
+			Duracion INTEGER);
+			
+CREATE TABLE Alumno (idAlumno INTEGER PRIMARY KEY AUTOINCREMENT,
+    		id_Carrera INTEGER,
+		    Nombre varchar(30),
+    		ApPaterno varchar(30),
+    		ApMaterno varchar(30),
+    		Email varchar(40),
+    		Edad INTEGER,
+    		Sexo TEXT(1),
+    		FOREIGN KEY(id_Carrera) REFERENCES Carrera(idCarrera));
+
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Computacion',5)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Industrial',5)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Sistemas',5)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Biotecnologia',4)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Civil',4)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Ingenieria Telecomunicaciones',4)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Licenciatura en Finanzas',3)
+INSERT INTO Carrera(Nombre,Duracion) VALUES ('Licenciatura en Psicologia',3)
+
+SELECT * FROM Carrera
+
+UPDATE Carrera SET Nombre= 'Ingenieria en Sistemas Computacionales', Duracion=3 WHERE idCarrera=1
+
+DELETE FROM Carrera WHERE idCarrera = 3;
+
+SELECT * FROM Carrera WHERE idCarrera=5
+SELECT * FROM Carrera WHERE Nombre= 'Ingenieria Civil'
+SELECT * FROM Carrera WHERE Duracion=4
+
+UPDATE Carrera SET Nombre='Licenciatura en Economia' WHERE idCarrera=6
+
+SELECT * FROM Carrera WHERE Duracion <> 4
+SELECT * FROM Carrera WHERE Duracion > 3
+SELECT * FROM Carrera WHERE Duracion < 5
+SELECT * FROM Carrera WHERE Duracion >= 4
+SELECT * FROM Carrera WHERE Duracion <= 4
+
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (1, 'Juan', 'Perez', 'Garcia', 'juan.perez@correo.com', 20, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (1, 'Ana', 'Lopez', 'Martinez', 'ana.lopez@correo.com', 19, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (2, 'Carlos', 'Gomez', 'Sanchez', 'carlos.gomez@correo.com', 22, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (2, 'Laura', 'Rodriguez', 'Diaz', 'laura.rodriguez@correo.com', 21, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (4, 'Jorge', 'Martinez', 'Hernandez', 'jorge.martinez@correo.com', 23, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (4, 'Sofia', 'Vazquez', 'Ramirez', 'sofia.vazquez@correo.com', 20, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (5, 'Pedro', 'Garcia', 'Lopez', 'pedro.garcia@correo.com', 24, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (5, 'Marta', 'Jimenez', 'Fernandez', 'marta.jimenez@correo.com', 22, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (6, 'Ricardo', 'Salazar', 'Mendoza', 'ricardo.salazar@correo.com', 25, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (6, 'Isabel', 'Perez', 'Torres', 'isabel.perez@correo.com', 21, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (7, 'Luis', 'Alvarez', 'Soto', 'luis.alvarez@correo.com', 23, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (7, 'Claudia', 'Morales', 'Ruiz', 'claudia.morales@correo.com', 20, 'F');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (8, 'Esteban', 'Fernandez', 'Gutierrez', 'esteban.fernandez@correo.com', 24, 'M');
+INSERT INTO Alumno(id_Carrera, Nombre, ApPaterno, ApMaterno, Email, Edad, Sexo) VALUES (8, 'Veronica', 'Torres', 'Reyes', 'veronica.torres@correo.com', 22, 'F');
+
+AND -- y
+SELECT * FROM Alumno WHERE id_Carrera=2 AND Sexo='F'
+
+OR -- Y/o
+SELECT * FROM Alumno WHERE id_Carrera=2 OR Sexo='H'
+
+NOT -- Negacion
+SELECT * FROM Alumno WHERE NOT Sexo='F'
+
+-- Operador Between
+
+SELECT * FROM Carrera WHERE Duracion BETWEEN 3 AND 4
+SELECT * FROM Carrera WHERE NOT Duracion BETWEEN 4 AND 5
+
+SELECT * FROM Alumno WHERE Edad BETWEEN 21 AND 23
+
+-- Operador IN
+
+SELECT * FROM Carrera WHERE Nombre IN('Ingenieria Industrial','Ingenieria Biotecnologia','Ingenieria Civil')
+
+SELECT * FROM Carrera WHERE idCarrera IN(2,5,7,8)
+
+SELECT * FROM Carrera WHERE NOT Nombre IN('Ingenieria Industrial','Ingenieria Biotecnologia','Ingenieria Civil')
+
+-- Operador LIKE
+SELECT * FROM Carrera WHERE Nombre LIKE 'L%'
+SELECT * FROM Carrera WHERE Nombre LIKE '%a'
+SELECT * FROM Carrera WHERE Nombre LIKE '%tria%'
+
+SELECT * FROM Carrera WHERE Nombre NOT LIKE 'I%'
